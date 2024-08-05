@@ -2,6 +2,12 @@ export interface TaskType {
   id?: string,
   title: string
   description: string
+  deadline: string
   status: 'TO_DO' | 'COMPLETED'
-  deadline: Date
+}
+
+export interface NewTaskType {
+  title: string
+  description: string
+  deadline: string
 }

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
-import { TaskType } from '../../types/task';
+import { NewTaskType, TaskType } from '../../types/task';
 import { CommonModule } from '@angular/common';
 import { TaskItemComponent } from '../task-item/task-item.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent],
+  imports: [CommonModule, TaskItemComponent, AddTaskComponent, AddTaskComponent, ButtonComponent],
   templateUrl: './tasks.component.html',
 })
 export class TasksComponent implements OnInit {
@@ -15,6 +17,12 @@ export class TasksComponent implements OnInit {
   tasks: TaskType[] = []
 
   constructor(private taskService: TaskService) { }
+
+  showNewTaskForm: boolean = false
+
+  toggleTaskForm(value: boolean) {
+    this.showNewTaskForm = value
+  }
 
   ngOnInit(): void {
     this.loadTasks()
@@ -24,6 +32,12 @@ export class TasksComponent implements OnInit {
     this.taskService.getTasks().subscribe((data) => {
       this.tasks = data;
     });
+  }
+
+  addTask(task: NewTaskType) {
+    this.taskService.addTask(task).subscribe(() => {
+      this.loadTasks()
+    })
   }
 
   deleteTask(task: TaskType) {

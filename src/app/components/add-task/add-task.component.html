@@ -1,0 +1,27 @@
+<form (ngSubmit)="onSubmit()" *ngIf="showNewTaskForm"
+  class="flex flex-col items-center w-full max-w-[90%] gap-4 lg:max-w-[500px] border border-slate-500 mx-auto py-5 rounded-md">
+  <h1 class="text-2xl font-bold text-white">Cadastrar Tarefa</h1>
+  <div class="flex flex-col w-screen gap-2 max-w-[90%]">
+    <label for="task" class="text-white text-lg font-bold">Tarefa</label>
+    <input type="text" name="task" placeholder="Adicionar tarefa"
+      class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none"
+      [(ngModel)]="task">
+  </div>
+
+  <div class="flex flex-col w-screen gap-2 max-w-[90%]">
+    <label for="description" class="text-white text-lg font-bold">Descrição</label>
+    <input type="text" name="description" placeholder="Adicionar descrição"
+      class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none"
+      [(ngModel)]="description">
+  </div>
+
+  <div class="flex flex-col w-screen gap-2 max-w-[90%]">
+    <label for="deadline" class="text-white text-lg font-bold">Prazo final</label>
+    <input type="date" name="deadline"
+      class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none"
+      [(ngModel)]="deadline">
+  </div>
+
+  <button type="submit"
+    class="rounded-lg bg-green-500 py-3 font-semibold hover:bg-green-600 w-full max-w-[90%]">Salvar</button>
+</form>
