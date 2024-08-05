@@ -9,6 +9,6 @@
   </div>
 
   <div class="flex w-full max-w-[90%] flex-col gap-5 lg:max-w-[500px]">
-    <app-task-item *ngFor="let task of tasks" [task]="task" (onDeleteTask)="deleteTask($event)" />
+    <app-task-item *ngFor="let task of tasks" [task]="task" (onDeleteTask)="deleteTask($event)" (onConcludeTask)="onConclude($event)" />
   </div>
 </div>

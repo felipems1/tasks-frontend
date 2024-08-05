@@ -1,7 +1,10 @@
-<div class="flex flex-col justify-between rounded-lg border-none bg-slate-700 px-4 py-4 font-semibold text-white">
+<div [ngClass]="{'border-green-500 border-l-[14px]': task.status === 'COMPLETED'}" class="flex flex-col justify-between rounded-lg bg-slate-700 px-4 py-4 font-semibold text-white">
   <div class="flex justify-between">
     <h1 class="text-2xl font-bold">{{ task.title }} </h1>
-    <fa-icon [icon]="faTimes" class="text-red-500 text-2xl cursor-pointer" (click)="onDelete(task)" />
+    <div class="space-x-5">
+      <fa-icon [icon]="faCheck" class="text-green-500 text-2xl cursor-pointer" [ngClass]="{'hidden': task.status !== 'TO_DO'}" (click)="onConclude(task)" />
+      <fa-icon [icon]="faTimes" class="text-red-500 text-2xl cursor-pointer" (click)="onDelete(task)" />
+    </div>
   </div>
   <p class="text-sm text-zinc-400">{{ task.description }}</p>
 </div>
