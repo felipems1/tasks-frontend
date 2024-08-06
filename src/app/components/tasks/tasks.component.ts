@@ -47,6 +47,12 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  onUpdate(task: TaskType) {
+    this.taskService.updateTask(task).subscribe(() => {
+      this.loadTasks()
+    })
+  }
+
   onConclude(task: TaskType) {
     task.status = 'COMPLETED'
     this.taskService.updateTask(task).subscribe(() => {
