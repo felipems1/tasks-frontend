@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { ButtonComponent } from '../button/button.component';
+import { SearchTaskComponent } from '../search-task/search-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent, AddTaskComponent, AddTaskComponent, ButtonComponent],
+  imports: [CommonModule, TaskItemComponent, AddTaskComponent, AddTaskComponent, ButtonComponent, SearchTaskComponent],
   templateUrl: './tasks.component.html',
 })
 export class TasksComponent implements OnInit {
@@ -28,8 +29,8 @@ export class TasksComponent implements OnInit {
     this.loadTasks()
   }
 
-  loadTasks(): void {
-    this.taskService.getTasks().subscribe((data) => {
+  loadTasks(title?: string): void {
+    this.taskService.getTasks(title).subscribe((data) => {
       this.tasks = data;
     });
   }
