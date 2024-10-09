@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { TaskFormType } from '../../types/task'
+import { TaskFormFieldsComponent } from '../task-form-fields/task-form-fields.component'
 
 @Component({
-  selector: 'app-task-form',
+  selector: 'app-create-new-task',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './task-form.component.html',
+  imports: [CommonModule, ReactiveFormsModule, TaskFormFieldsComponent],
+  templateUrl: './create-new-task.component.html',
 })
-export class TaskFormComponent {
+export class CreateNewTaskComponent implements OnInit {
   @Output() onAddTask = new EventEmitter<TaskFormType>()
   @Input() showTaskForm: boolean = false
 
@@ -22,6 +23,8 @@ export class TaskFormComponent {
       deadline: ['', Validators.required]
     });
   }
+
+  ngOnInit(): void {}
   
   onSubmit() {
     if (this.taskForm.invalid) {

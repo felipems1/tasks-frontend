@@ -6,12 +6,12 @@ import { TaskItemComponent } from '../task-item/task-item.component';
 import { ButtonComponent } from '../button/button.component';
 import { SearchTaskComponent } from '../search-task/search-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TaskFormComponent } from '../task-form/task-form.component';
+import { CreateNewTaskComponent } from '../create-new-task/create-new-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent, TaskFormComponent, ButtonComponent, SearchTaskComponent, ReactiveFormsModule],
+  imports: [CommonModule, TaskItemComponent, CreateNewTaskComponent, ButtonComponent, SearchTaskComponent, ReactiveFormsModule],
   templateUrl: './tasks.component.html',
 })
 export class TasksComponent implements OnInit {

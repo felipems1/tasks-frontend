@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { TaskType } from '../../types/task'
 import { faTimes, faCheck, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../button/button.component'
-import { FormsModule } from '@angular/forms'
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
+import { TaskFormFieldsComponent } from '../task-form-fields/task-form-fields.component'
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, ButtonComponent, FormsModule],
+  imports: [FontAwesomeModule, CommonModule, ButtonComponent, FormsModule, ReactiveFormsModule, TaskFormFieldsComponent],
   templateUrl: './task-item.component.html',
 })
 export class TaskItemComponent {
@@ -19,14 +20,25 @@ export class TaskItemComponent {
   @Output() onUpdateTask = new EventEmitter<TaskType>()
 
   showUpdateTaskForm: boolean = false
-
-  toggleTaskForm(value: boolean) {
-    this.showUpdateTaskForm = value
-  }
+  taskForm!: FormGroup
 
   faTimes = faTimes
   faPencil = faPencil
   faCheck = faCheck
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.taskForm = this.formBuilder.group({
+      title: [this.task.title, Validators.required],
+      description: [this.task.description, Validators.required],
+      deadline: [this.task.deadline, Validators.required]
+    })
+  }
+
+  toggleTaskForm(value: boolean) {
+    this.showUpdateTaskForm = value
+  }
 
   onDelete(task: TaskType) {
     this.onDeleteTask.emit(task)
@@ -36,35 +48,24 @@ export class TaskItemComponent {
     this.onConcludeTask.emit(task)
   }
 
-  taskTitle: string = ''
-  description: string = ''
-  deadline: string = ''
-
-  ngOnInit(): void {
-    this.taskTitle = this.task.title
-    this.description = this.task.description
-    this.deadline = this.task.deadline
-  }
   
   onSubmit() {
-    if (!this.taskTitle || !this.description || !this.deadline) {
-      alert('Preencha todas informação!')
+    if (this.taskForm.invalid) {
+      alert('Preencha todos os campo!')
       return
     }
 
-    const updateTask = {
+    const updatedTask = {
       id: this.task.id,
-      title: this.taskTitle,
-      description: this.description,
+      title: this.taskForm.value.title,
+      description: this.taskForm.value.description,
       status: this.task.status,
-      deadline: this.deadline,
+      deadline: this.taskForm.value.deadline,
     }
 
-    this.onUpdateTask.emit(updateTask)
+    this.onUpdateTask.emit(updatedTask)
 
-    this.taskTitle = ''
-    this.description = ''
-    this.deadline = ''
+    this.taskForm.reset()
     this.showUpdateTaskForm = false
   }
 }

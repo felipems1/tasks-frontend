@@ -9,7 +9,7 @@
     }
   </div>
 
-  <app-task-form (onAddTask)="addTask($event)" [showTaskForm]="showTaskForm" />
+  <app-create-new-task (onAddTask)="addTask($event)" [showTaskForm]="showTaskForm" />
 
   <div class="w-full max-w-[90%] lg:max-w-[500px]">
     <app-search-task (onSearchTask)="loadTasks($event)" />

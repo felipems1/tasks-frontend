@@ -17,26 +17,7 @@
       <h1 class="text-2xl font-bold text-white">Atualizar Tarefa</h1>
       <app-button text="Fechar" color="red" (btnClick)="toggleTaskForm(false)">Fechar</app-button>
     </div>
-    <div class="flex flex-col w-screen gap-2 max-w-[90%]">
-      <label for="task" class="text-white text-lg font-bold">Tarefa</label>
-      <input type="text" name="task" placeholder="Adicionar tarefa"
-        class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none"
-        [(ngModel)]="taskTitle">
-    </div>
-
-    <div class="flex flex-col w-screen gap-2 max-w-[90%]">
-      <label for="description" class="text-white text-lg font-bold">Descrição</label>
-      <input type="text" name="description" placeholder="Adicionar descrição"
-        class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none"
-        [(ngModel)]="description">
-    </div>
-
-    <div class="flex flex-col w-screen gap-2 max-w-[90%]">
-      <label for="deadline" class="text-white text-lg font-bold">Prazo final</label>
-      <input type="date" name="deadline"
-        class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none"
-        [(ngModel)]="deadline">
-    </div>
+    <app-task-form-fields [taskForm]="taskForm"></app-task-form-fields>
 
     <button type="submit"
       class="rounded-lg bg-yellow-500 py-3 font-semibold text-black hover:bg-yellow-600 w-full max-w-[90%]">Salvar</button>
