@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewTaskType, TaskType } from '../types/task';
+import { TaskFormType, TaskType } from '../types/task';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class TaskService {
     return this.http.put<TaskType>(`${this.apiUrl}/${task.id}`, task)
   }
 
-  addTask(task: NewTaskType): Observable<TaskType> {
+  addTask(task: TaskFormType): Observable<TaskType> {
     return this.http.post<TaskType>(this.apiUrl, task)
   }
 }

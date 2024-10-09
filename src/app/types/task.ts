@@ -6,7 +6,7 @@ export interface TaskType {
   status: 'TO_DO' | 'COMPLETED'
 }
 
-export interface NewTaskType {
+export interface TaskFormType {
   title: string
   description: string
   deadline: string

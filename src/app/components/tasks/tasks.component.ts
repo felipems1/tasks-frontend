@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
-import { NewTaskType, TaskType } from '../../types/task';
+import { TaskFormType, TaskType } from '../../types/task';
 import { CommonModule } from '@angular/common';
 import { TaskItemComponent } from '../task-item/task-item.component';
-import { AddTaskComponent } from '../add-task/add-task.component';
 import { ButtonComponent } from '../button/button.component';
 import { SearchTaskComponent } from '../search-task/search-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TaskFormComponent } from '../task-form/task-form.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent, AddTaskComponent, AddTaskComponent, ButtonComponent, SearchTaskComponent],
+  imports: [CommonModule, TaskItemComponent, TaskFormComponent, ButtonComponent, SearchTaskComponent, ReactiveFormsModule],
   templateUrl: './tasks.component.html',
 })
 export class TasksComponent implements OnInit {
@@ -19,10 +20,10 @@ export class TasksComponent implements OnInit {
 
   constructor(private taskService: TaskService) { }
 
-  showNewTaskForm: boolean = false
+  showTaskForm: boolean = false
 
   toggleTaskForm(value: boolean) {
-    this.showNewTaskForm = value
+    this.showTaskForm = value
   }
 
   ngOnInit(): void {
@@ -35,7 +36,7 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  addTask(task: NewTaskType) {
+  addTask(task: TaskFormType) {
     this.taskService.addTask(task).subscribe(() => {
       this.loadTasks()
     })
