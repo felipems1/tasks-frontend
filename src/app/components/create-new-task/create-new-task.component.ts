@@ -10,11 +10,12 @@ import { TaskFormFieldsComponent } from '../task-form-fields/task-form-fields.co
   imports: [CommonModule, ReactiveFormsModule, TaskFormFieldsComponent],
   templateUrl: './create-new-task.component.html',
 })
-export class CreateNewTaskComponent implements OnInit {
+export class CreateNewTaskComponent {
   @Output() onAddTask = new EventEmitter<TaskFormType>()
   @Input() showTaskForm: boolean = false
 
   taskForm: FormGroup;
+  submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.taskForm = this.formBuilder.group({
@@ -23,15 +24,15 @@ export class CreateNewTaskComponent implements OnInit {
       deadline: ['', Validators.required]
     });
   }
-
-  ngOnInit(): void {}
   
   onSubmit() {
+    this.submitted = true;
+
     if (this.taskForm.invalid) {
-      alert('Preencha todos os campo!')
       return
     }
     this.onAddTask.emit(this.taskForm.value)
     this.taskForm.reset()
+    this.submitted = false;
   }
 }

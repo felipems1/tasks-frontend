@@ -21,6 +21,7 @@ export class TaskItemComponent {
 
   showUpdateTaskForm: boolean = false
   taskForm!: FormGroup
+  submitted: boolean = false;
 
   faTimes = faTimes
   faPencil = faPencil
@@ -50,8 +51,9 @@ export class TaskItemComponent {
 
   
   onSubmit() {
+    this.submitted = true;
+
     if (this.taskForm.invalid) {
-      alert('Preencha todos os campo!')
       return
     }
 
@@ -67,5 +69,6 @@ export class TaskItemComponent {
 
     this.taskForm.reset()
     this.showUpdateTaskForm = false
+    this.submitted = false;
   }
 }

@@ -17,7 +17,7 @@
       <h1 class="text-2xl font-bold text-white">Atualizar Tarefa</h1>
       <app-button text="Fechar" color="red" (btnClick)="toggleTaskForm(false)">Fechar</app-button>
     </div>
-    <app-task-form-fields [taskForm]="taskForm"></app-task-form-fields>
+    <app-task-form-fields [taskForm]="taskForm" [submitted]="submitted"></app-task-form-fields>
 
     <button type="submit"
       class="rounded-lg bg-yellow-500 py-3 font-semibold text-black hover:bg-yellow-600 w-full max-w-[90%]">Salvar</button>

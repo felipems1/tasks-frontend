@@ -1,8 +1,7 @@
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" *ngIf="showTaskForm"
   class="flex flex-col items-center w-full max-w-[90%] gap-4 lg:max-w-[500px] border border-slate-500 mx-auto py-5 rounded-md">
   <h1 class="text-2xl font-bold text-white">Cadastrar Tarefa</h1>
-  <app-task-form-fields [taskForm]="taskForm"></app-task-form-fields>
-
+  <app-task-form-fields [taskForm]="taskForm" [submitted]="submitted"></app-task-form-fields>
   <button type="submit"
     class="rounded-lg bg-yellow-500 py-3 font-semibold hover:bg-yellow-600 w-full max-w-[90%]">Salvar</button>
 </form>

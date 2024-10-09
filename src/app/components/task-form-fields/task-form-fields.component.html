@@ -5,16 +5,28 @@
       class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none">
   </div>
 
+  <div *ngIf="submitted && taskForm.get('title')?.invalid" class="text-red-500">
+    Título é obrigatório!
+  </div>
+
   <div class="flex flex-col w-screen gap-2 max-w-[90%]">
     <label for="description" class="text-white text-lg font-bold">Descrição</label>
     <input type="text" formControlName="description" placeholder="Adicionar descrição"
       class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none">
   </div>
 
+  <div *ngIf="submitted && taskForm.get('description')?.invalid" class="text-red-500">
+    Descrição é obrigatória!
+  </div>
+
   <div class="flex flex-col w-screen gap-2 max-w-[90%]">
     <label for="deadline" class="text-white text-lg font-bold">Prazo final</label>
     <input type="date" formControlName="deadline"
       class="w-full rounded-lg border border-slate-500 bg-slate-900 px-4 py-4 text-white outline-none">
+  </div>
+
+  <div *ngIf="submitted && taskForm.get('deadline')?.invalid" class="text-red-500">
+    Prazo final é obrigatório!
   </div>
 </div>
 
